@@ -1,0 +1,16 @@
+login success user=loic
+login failed user=admin
+user guest failed login
+ftp login failed
+ERROR connection timeout
+warning disk almost full
+192.168.1.1 access granted
+192.168.1.50 access denied
+password=123456
+password=secure123
+GET /index.html
+POST /login
+ssh connection from 10.0.0.5
+login success user=paul
+login failed user=root
+user test failed login

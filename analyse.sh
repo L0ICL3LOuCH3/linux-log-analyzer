@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#================================================================
+#MINIPROJET
+#AUTEUR:LOIC
+#================================================================
+
+
+
+echo "==================RAPPORT ANALYSE=========================="
+echo "***********************************************************"
+
+awk '{count++} END{printf "Total lignes: %d\n" , count}' "data.txt"
+
+awk '
+/login/{login++}
+/failed|ERROR/{alerte++}
+/192/{ip++}
+/password/{password++}
+ END{
+	printf "Login: %d\n" , login
+	printf "Alertes: %d\n" , alerte
+	printf "IP: %d\n" , ip
+	printf "Passwords: %d\n" , password
+
+}' "data.txt"
+
+awk -F "=" '
+BEGIN {print "users trouves:"}
+/user=/  {printf "- %s\n", $NF}
+' "data.txt"
+echo "*************************************************************"
