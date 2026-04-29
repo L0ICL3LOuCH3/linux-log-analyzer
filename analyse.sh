@@ -2,15 +2,15 @@
 
 #================================================================
 #MINIPROJET
-#AUTEUR:LOIC
+#AUTEUR:L0ICL3LOuCH3
 #================================================================
 
+RAPPORT="rapport.txt" > "$RAPPORT"
 
+echo "==================RAPPORT ANALYSE==========================" |tee -a "$RAPPORT"
+echo "***********************************************************" |tee -a "$RAPPORT"
 
-echo "==================RAPPORT ANALYSE=========================="
-echo "***********************************************************"
-
-awk '{count++} END{printf "Total lignes: %d\n" , count}' "data.txt"
+awk '{count++} END{printf "Total lignes: %d\n" , count}' "data.txt" | tee -a "$RAPPORT"
 
 awk '
 /login/{login++}
@@ -18,15 +18,16 @@ awk '
 /192/{ip++}
 /password/{password++}
  END{
-	printf "Login: %d\n" , login
-	printf "Alertes: %d\n" , alerte
-	printf "IP: %d\n" , ip
-	printf "Passwords: %d\n" , password
+	printf "Login: %d\n" , login 
+	printf "Alertes: %d\n" , alerte 
+	printf "IP: %d\n" , ip 
+	printf "Passwords: %d\n" , password 
 
-}' "data.txt"
+}' "data.txt" | tee -a "$RAPPORT"
 
 awk -F "=" '
 BEGIN {print "users trouves:"}
-/user=/  {printf "- %s\n", $NF}
-' "data.txt"
-echo "*************************************************************"
+/user=/  {printf "- %s\n", $NF} 
+' "data.txt" | tee -a "$RAPPORT"
+
+echo "*************************************************************" | tee -a "$RAPPORT"
