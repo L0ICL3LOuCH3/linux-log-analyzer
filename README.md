@@ -1,15 +1,39 @@
 # Linux Log Analyzer
 
-Mini projet Linux utilisant Bash et AWK pour analyser un fichier de données.
+Mini-projet Linux/Bash/AWK pour analyser un fichier de logs simulés en cybersécurité.
+
+## Objectif
+
+Ce projet sert à pratiquer :
+
+- Bash scripting
+- AWK
+- analyse de logs
+- extraction de données
+- détection d'événements suspects
+
+## Fichiers
+
+- `analyse.sh` : script principal
+- `data.txt` : fichier de logs simulés
+- `rapport.txt` : rapport généré automatiquement
 
 ## Fonctionnalités
 
-- Comptage des lignes
-- Analyse des connexions (login)
-- Détection des erreurs (failed, ERROR)
-- Analyse des IP
-- Détection des mots de passe
-- Extraction des utilisateurs
+Le script analyse `data.txt` et génère un rapport avec :
+
+- nombre total de lignes
+- nombre de connexions `login`
+- nombre d'échecs `failed`
+- accès refusés `denied`
+- erreurs `ERROR`
+- mots de passe détectés
+- attaques détectées
+- IP trouvées
+- utilisateurs extraits
+- IP listées
+- alertes de sécurité
+
 
 ## Technologies utilisées
 

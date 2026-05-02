@@ -1,33 +1,73 @@
 #!/bin/bash
-
 #================================================================
 #MINIPROJET
 #AUTEUR:L0ICL3LOuCH3
 #================================================================
 
-RAPPORT="rapport.txt" > "$RAPPORT"
+RAPPORT="rapport.txt"
+ > "$RAPPORT"
 
-echo "==================RAPPORT ANALYSE==========================" |tee -a "$RAPPORT"
-echo "***********************************************************" |tee -a "$RAPPORT"
+file="data.txt"
 
-awk '{count++} END{printf "Total lignes: %d\n" , count}' "data.txt" | tee -a "$RAPPORT"
+echo "*****************|***************|**************************" |tee -a "$RAPPORT"
+echo "=================|RAPPORT ANALYSE|==========================" |tee -a "$RAPPORT"
+echo "*****************-***************-**************************" |tee -a "$RAPPORT"
+echo "  "|tee -a "$RAPPORT"
+
+awk '{count++} END{printf "Total lignes: %d\n" , count}' "$file" | tee -a "$RAPPORT"
+echo  "  " |tee -a "$RAPPORT"
 
 awk '
 /login/{login++}
-/failed|ERROR/{alerte++}
-/192/{ip++}
+/failed/{alerte++}
+/denied/{d++}
+/ERROR/{e++}
+/attack/{a++}
 /password/{password++}
+/ip/{ip++} 
+
  END{
 	printf "Login: %d\n" , login 
-	printf "Alertes: %d\n" , alerte 
-	printf "IP: %d\n" , ip 
-	printf "Passwords: %d\n" , password 
+	printf "FAILED: %d\n" , alerte 
+	printf "DENIED: %d\n" , d 
+	printf "ERRORS: %d\n" , e
+	printf "PASSWORDS: %d\n" , password
+	printf "ATTACKS: %d\n" , a
+	printf "IPS: %d\n" , ip 
 
-}' "data.txt" | tee -a "$RAPPORT"
+}' "$file" | tee -a "$RAPPORT"
+echo "  " |tee -a "$RAPPORT"
+awk  '
+BEGIN {
+	print "USERS TROUVERS:"
+}
+{
+   for (i=1; i<=NF; i++) {
+      if ($i ~ /^user=/) {
+	split($i, u, "=")
+	print "- " u[2]
+	}
+    }
+}' "$file" | tee -a "$RAPPORT"
 
-awk -F "=" '
-BEGIN {print "users trouves:"}
-/user=/  {printf "- %s\n", $NF} 
-' "data.txt" | tee -a "$RAPPORT"
+echo "  " |tee -a "$RAPPORT"
+
+awk '
+BEGIN{
+	print "IP SUSPECTES:"
+}
+{
+ for (i=1; i<=NF; i++) { 
+    if ($i ~ /^ip=/){
+	split($i, u, "=") 
+	print "+ " u[2]
+	}
+   }
+}' "$file" |tee -a "$RAPPORT"
+
+echo "ALERTES:" | tee -a "$RAPPORT"
+
+awk '/failed|denied|ERROR|attack|brute force/ {print "- " $0}' "$file" | tee -a "$RAPPORT"
+
 
 echo "*************************************************************" | tee -a "$RAPPORT"

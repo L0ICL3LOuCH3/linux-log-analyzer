@@ -1,13 +1,51 @@
-==================RAPPORT ANALYSE==========================
-***********************************************************
-Total lignes: 16
-Login: 8
-Alertes: 6
-IP: 2
-Passwords: 2
-users trouves:
-- loic
+*****************|***************|**************************
+=================|RAPPORT ANALYSE|==========================
+*****************-***************-**************************
+  
+Total lignes: 15
+  
+Login: 6
+FAILED: 4
+DENIED: 1
+ERRORS: 1
+PASSWORDS: 2
+ATTACKS: 1
+IPS: 13
+  
+USERS TROUVERS:
+- hacker
 - admin
-- paul
+- admin
+- hacker
+- guest
+- admin
+- hacker
+- guest
 - root
+- hacker
+- admin
+  
+IP SUSPECTES:
++ 192.168.1.10
++ 192.168.1.50
++ 192.168.1.50
++ 10.0.0.5
++ 192.168.1.10
++ 192.168.1.80
++ 172.16.0.9
++ 192.168.1.10
++ 192.168.1.50
++ 10.0.0.5
++ 192.168.1.99
++ 192.168.1.10
++ 192.168.1.50
+ALERTES:
+- 2026-05-02 08:12:44 WARN login failed user=admin ip=192.168.1.50 service=ssh
+- 2026-05-02 08:13:01 WARN login failed user=admin ip=192.168.1.50 service=ssh
+- 2026-05-02 08:14:22 ERROR connection timeout ip=10.0.0.5 service=ftp
+- 2026-05-02 08:18:33 WARN access denied user=guest ip=192.168.1.80
+- 2026-05-02 08:19:10 ALERT ethical attack detected ip=172.16.0.9
+- 2026-05-02 08:24:40 WARN ftp login failed user=guest ip=10.0.0.5
+- 2026-05-02 08:25:41 CRITICAL root login failed user=root ip=192.168.1.99
+- 2026-05-02 08:29:17 ALERT brute force suspected user=admin ip=192.168.1.50
 *************************************************************
